@@ -83,6 +83,7 @@ const nameOutput = document.querySelector("#output");
 const color1 = document.querySelector("#color1");
 const color2 = document.querySelector("#color2");
 const hueLinear = document.querySelector("#hue-linear");
+const copyButton = document.querySelector("#copy");
 
 makeBtn.addEventListener("click", () => {
     const linear = hueLinear.checked;
@@ -95,4 +96,9 @@ makeBtn.addEventListener("click", () => {
         linear ? color2rgb : RGBtoHSV(...color2rgb),
         linear
     ));
+    copyButton.hidden = false;
+})
+
+copyButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(nameOutput.textContent);
 })
