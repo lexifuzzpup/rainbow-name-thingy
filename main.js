@@ -85,6 +85,26 @@ const color2 = document.querySelector("#color2");
 const hueLinear = document.querySelector("#hue-linear");
 const copyButton = document.querySelector("#copy");
 
+load();
+
+nameInput.addEventListener("input", save);
+color1.addEventListener("input", save);
+color2.addEventListener("input", save);
+hueLinear.addEventListener("click", save);
+
+function save() {
+    localStorage["name-input"] = nameInput.value;
+    localStorage["color1"] = color1.value;
+    localStorage["color2"] = color2.value;
+    localStorage["hue-linear"] = hueLinear.checked ? "yes" : "no";
+}
+function load() {
+    if("name-input" in localStorage) nameInput.value = localStorage["name-input"];
+    if("color1" in localStorage) color1.value = localStorage["color1"];
+    if("color2" in localStorage) color2.value = localStorage["color2"];
+    if("hue-linear" in localStorage) hueLinear.checked = localStorage["hue-linear"] == "yes";
+}
+
 makeBtn.addEventListener("click", () => {
     const linear = hueLinear.checked;
     const color1rgb = HEXtoRGB(color1.value);
